@@ -9,6 +9,9 @@ public class CandleLight : MonoBehaviour
 {
     Light _candleLight;
 
+    [SerializeField]
+    SkinnedMeshRenderer _visionDarkness;
+
     float
         _candleLightTimer,
         _maxCandleLightRadius = 50f;
@@ -48,6 +51,8 @@ public class CandleLight : MonoBehaviour
             float candleLifePercentage = (_candleLightTimer / 300) * 100;
 
             _candleLight.spotAngle = (candleLifePercentage / 100) * _maxCandleLightRadius;
+
+            _visionDarkness.SetBlendShapeWeight(0, 100 - candleLifePercentage);
         }
 
         else
